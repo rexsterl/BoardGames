@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiangqi - Chinese Chess</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>象棋 Xiangqi</h1>
+            <p class="subtitle">Chinese Chess</p>
+        </header>
+
+        <main>
+            <div class="game-container">
+                <div id="status" class="status-bar">
+                    Loading game...
+                </div>
+
+                <canvas id="board" width="600" height="700"></canvas>
+
+                <div class="controls">
+                    <button id="newGame" class="btn btn-primary">New Game</button>
+                    <button id="aiMove" class="btn btn-secondary" disabled>AI Move</button>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h2>How to Play</h2>
+                <ul>
+                    <li><strong>Red</strong> (you) moves first</li>
+                    <li>Click a piece to select it</li>
+                    <li>Click a highlighted square to move</li>
+                    <li>Win by checkmating the opponent's General</li>
+                </ul>
+
+                <h3>Pieces</h3>
+                <dl class="pieces-legend">
+                    <dt>帥/將 General</dt>
+                    <dd>Moves one step within palace</dd>
+
+                    <dt>仕/士 Advisor</dt>
+                    <dd>Moves diagonally within palace</dd>
+
+                    <dt>相/象 Elephant</dt>
+                    <dd>Moves 2 steps diagonally, can't cross river</dd>
+
+                    <dt>傌/馬 Horse</dt>
+                    <dd>Moves in L-shape</dd>
+
+                    <dt>俥/車 Chariot</dt>
+                    <dd>Moves any distance orthogonally</dd>
+
+                    <dt>炮/砲 Cannon</dt>
+                    <dd>Jumps one piece to capture</dd>
+
+                    <dt>兵/卒 Soldier</dt>
+                    <dd>Moves forward (and sideways after river)</dd>
+                </dl>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with Python FastAPI + JavaScript Canvas</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

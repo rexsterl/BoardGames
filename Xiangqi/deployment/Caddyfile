@@ -1,0 +1,45 @@
+# Caddyfile for Xiangqi deployment
+# Replace xiangqi.yourdomain.com with your actual domain
+
+xiangqi.yourdomain.com {
+    # Enable automatic HTTPS
+    # Caddy will automatically obtain and renew SSL certificates
+
+    # Reverse proxy to FastAPI server
+    reverse_proxy localhost:8000
+
+    # WebSocket support
+    @websockets {
+        header Connection *Upgrade*
+        header Upgrade websocket
+    }
+    reverse_proxy @websockets localhost:8000
+
+    # Logging
+    log {
+        output file /var/log/caddy/xiangqi.log
+        format json
+    }
+
+    # Security headers
+    header {
+        # Enable HSTS
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        # Prevent clickjacking
+        X-Frame-Options "SAMEORIGIN"
+        # Prevent MIME type sniffing
+        X-Content-Type-Options "nosniff"
+        # Enable XSS protection
+        X-XSS-Protection "1; mode=block"
+        # Referrer policy
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+
+    # Gzip compression
+    encode gzip
+}
+
+# For local testing without domain
+:80 {
+    reverse_proxy localhost:8000
+}

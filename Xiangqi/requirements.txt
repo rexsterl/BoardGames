@@ -1,0 +1,8 @@
+# Desktop client
+pygame>=2.5.0
+
+# Web server
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+websockets>=12.0
+python-multipart>=0.0.6
